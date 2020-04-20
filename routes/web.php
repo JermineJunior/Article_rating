@@ -12,12 +12,17 @@
 */
 
 Route::get('/', function () {
-	$articles = App\Article::all();
-    return view('welcome',compact('articles'));
+
+    return view('welcome');
 });
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('articles', 'ArticleController@index');
+
+Route::get('articles/{article}', 'ArticleController@show');
+
 
 Route::post('articles/{article}/rate', 'ArticleRatingController@store');

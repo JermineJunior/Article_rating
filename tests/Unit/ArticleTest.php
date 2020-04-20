@@ -47,6 +47,16 @@ class ArticleTest extends TestCase
           $this->assertEquals(3, $this->article->rating());
       }
 
+      /** @test*/
+      public function it_can_fetch_a_user_rating() 
+      {
+         $this->article->rate(5,$this->user);
+
+         $rating = $this->article->ratingFor($this->user);
+
+         $this->assertEquals(5,$rating);
+      }
+
       /** @test */
       public function it_can_not_be_rated_above_5()
       {

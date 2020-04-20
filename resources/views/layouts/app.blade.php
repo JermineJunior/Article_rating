@@ -8,6 +8,9 @@
         <link rel="stylesheet" href="{{asset('css/main.css')}}">
 
         <title>Laravel</title>
+        <style>
+            @yield('style')
+        </style>
 </head>
 <body>
     <div id="app">
@@ -62,9 +65,10 @@
             </div>
         </nav>
 
-        <main class="py-4 bh-grayy-200">
+        <main class="py-4 bh-gray-200">
             @yield('content')
         </main>
     </div>
+    <script src="{{asset('js/app.js')}}"></script>
 </body>
 </html>

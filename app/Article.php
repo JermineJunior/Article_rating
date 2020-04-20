@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\User;
 use Illuminate\Database\Eloquent\Model;
 
 class Article extends Model
@@ -26,5 +27,10 @@ class Article extends Model
     public function rating()
     {
         return $this->ratings->avg('rating');
+    }
+
+    public function ratingFor(User $user)
+    {
+       return $this->ratings()->where('user_id', $user->id)->value('rating');
     }
 }
