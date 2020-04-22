@@ -13,6 +13,7 @@
 <script>
     export default {
         name: "StarRating.vue",
+
         props:['initial'],
         data(){
             return{
