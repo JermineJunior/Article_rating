@@ -31,6 +31,12 @@ class ArticleTest extends TestCase
     }
 
     /** @test */
+    public function it_has_a_path()
+    {
+      $this->assertEquals($this->article->path(),'/articles/'.$this->article->id);
+    }
+
+    /** @test */
     public function it_can_be_rated()
     {
         $this->article->rate(5,$this->user);

@@ -14,9 +14,7 @@ class Article extends Model
             throw new \InvalidArgumentException("Sorry rating must be between 1 to 5");
         }
         $this->ratings()
-             ->updateOrCreate([
-                'user_id'  => $user ? $user->id : auth()->id(),
-            ] ,compact('rating'));
+             ->updateOrCreate(['user_id'  => $user ? $user->id : auth()->id(),] ,compact('rating'));
     }
 
     public function ratings()
@@ -32,5 +30,10 @@ class Article extends Model
     public function ratingFor(User $user)
     {
        return $this->ratings()->where('user_id', $user->id)->value('rating');
+    }
+
+    public function path()
+    {
+        return '/articles/'.$this->id;
     }
 }

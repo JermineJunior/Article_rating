@@ -6,7 +6,7 @@
         @forelse ($articles as $article)
             <div class="card mx-4 my-3 px-4 py-2 col-md-3" style="width:22rem;">
                 <div class="card-title text-lg font-semibold">
-                    <a href="/articles/{{ $article->id }}">
+                    <a href="{{ $article->path() }}">
                         {{$article->title}}
                     </a>
                 </div>
