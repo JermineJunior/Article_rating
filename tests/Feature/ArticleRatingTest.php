@@ -16,7 +16,7 @@ class ArticleRatingTest extends TestCase
     {
         $article = factory(Article::class)->create();
 
-        $this->post("/articles/{$article->id}/rate")->assertRedirect('login');
+        $this->post($article->path()."/rate")->assertRedirect('login');
 
         $this->assertEmpty($article->ratings);
     }
@@ -26,7 +26,7 @@ class ArticleRatingTest extends TestCase
         $this->signIn();
         $article = factory(Article::class)->create();
 
-        $this->post("/articles/{$article->id}/rate",['rating' => 5]);
+        $this->post($article->path()."/rate",['rating' => 5]);
 
         $this->assertEquals(5,$article->rating());
     }
@@ -36,9 +36,9 @@ class ArticleRatingTest extends TestCase
         $this->signIn();
         $article = factory(Article::class)->create();
 
-        $this->post("/articles/{$article->id}/rate")->assertSessionHasErrors();
+        $this->post($article->path()."/rate")->assertSessionHasErrors();
 
-        $this->post("/articles/{$article->id}/rate",['rating'=> 'foo'])->assertSessionHasErrors();
+        $this->post($article->path()."/rate",['rating'=> 'foo'])->assertSessionHasErrors();
 
     }
     /** @test */
@@ -47,7 +47,7 @@ class ArticleRatingTest extends TestCase
         $this->signIn();
         $article = factory(Article::class)->create();
 
-        $this->post("/articles/{$article->id}/rate",['rating'=> -1])->assertSessionHasErrors();
+        $this->post($article->path()."/rate",['rating'=> -1])->assertSessionHasErrors();
     }
     /** @test */
     public function it_can_not_be_rated_above_5()
@@ -55,7 +55,7 @@ class ArticleRatingTest extends TestCase
         $this->signIn();
         $article = factory(Article::class)->create();
 
-        $this->post("/articles/{$article->id}/rate",['rating'=> 6])->assertSessionHasErrors();
+        $this->post($article->path()."/rate",['rating'=> 6])->assertSessionHasErrors();
     }
 
 }

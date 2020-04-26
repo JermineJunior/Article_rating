@@ -11,7 +11,7 @@ class Article extends Model
     public function rate($rating, $user = null)
     {
         if ($rating > 5 || $rating < 1) {
-            throw new \InvalidArgumentException("Sorry rating must be between 1 to 5");
+            $this->abortError();
         }
         $this->ratings()
              ->updateOrCreate(['user_id'  => $user ? $user->id : auth()->id(),] ,compact('rating'));
@@ -35,5 +35,10 @@ class Article extends Model
     public function path()
     {
         return '/articles/'.$this->id;
+    }
+
+    protected function abortError()
+    {
+        throw new \InvalidArgumentException("Sorry rating must be between 1 to 5");
     }
 }

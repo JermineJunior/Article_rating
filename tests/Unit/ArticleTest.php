@@ -2,10 +2,9 @@
 
 namespace Tests\Unit;
 
-use Illuminate\Database\Eloquent\Model;
-use InvalidArgumentException;
 use Tests\TestCase;
 use App\{Article,User};
+use InvalidArgumentException;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
